@@ -1,0 +1,18 @@
+services:
+  quantary:
+    build: .
+    command: ["quant-factor-web", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      AGENT_MODE: mock
+      LLM_PROVIDER: mock
+      QUANT_DATA_ROOT: /datasets
+      MARKET_DATA_PROVIDER: synthetic
+    ports:
+      - "8000:8000"
+    init: true
+    volumes:
+      - ./data:/workspace/data
+      - ./artifacts:/workspace/artifacts
+      - ${QUANT_HOST_DATA:-./workspace}:/datasets:ro
+    restart: unless-stopped
+    stop_grace_period: 15s

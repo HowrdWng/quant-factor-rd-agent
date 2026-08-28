@@ -1,0 +1,31 @@
+.quantiles {
+  align-items: end;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(5, 1fr);
+  height: 132px;
+  margin: 10px 0 18px;
+  padding: 14px;
+}
+
+.quantiles div {
+  align-items: end;
+  color: var(--muted);
+  display: grid;
+  font-size: 9px;
+  gap: 4px;
+  height: 100%;
+  justify-items: center;
+}
+
+.quantiles i {
+  background: var(--teal);
+  border-radius: 4px 4px 1px 1px;
+  display: block;
+  max-width: 44px;
+  width: 70%;
+}
+
+.quantiles small { font-size: 9px; }

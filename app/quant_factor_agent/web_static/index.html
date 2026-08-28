@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Evidence-grounded AI quantitative factor research workspace">
+  <meta name="theme-color" content="#0d1b2f">
+  <meta property="og:title" content="Quantary · Factor Research OS">
+  <meta property="og:description" content="Evidence-grounded, auditable AI quantitative factor research.">
+  <meta property="og:type" content="website">
+  <title>Quantary · Factor Research OS</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/styles.css?v=0.3.0">
+  <link rel="stylesheet" href="/assets/quantiles.css?v=0.3.0">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">Q</span><div><b>Quantary</b><small>Factor Research OS</small></div></div>
+    <nav id="primary-nav">
+      <button class="nav-item active" data-page="learn"><span>01</span>Learn</button>
+      <button class="nav-item" data-page="research"><span>02</span>AI Research</button>
+      <button class="nav-item" data-page="runs"><span>03</span>Research Runs</button>
+      <button class="nav-item" data-page="factors"><span>04</span>Factor Library</button>
+      <button class="nav-item" data-page="multi"><span>05</span>Multi-Factor</button>
+      <button class="nav-item" data-page="backtest"><span>06</span>Backtest</button>
+      <button class="nav-item" data-page="paper"><span>07</span>Paper Trading</button>
+    </nav>
+    <div class="nav-section-label">SYSTEM</div>
+    <nav>
+      <button class="nav-item" data-page="knowledge"><span>08</span>Knowledge & Data</button>
+      <button class="nav-item" data-page="connections"><span>09</span>Connections</button>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="environment"><i id="health-dot"></i><span>Local research node</span></div>
+      <small>LLM cannot access BrokerAdapter</small>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><p class="eyebrow">AUDITABLE RESEARCH WORKSPACE</p><h1 id="page-title">Learn Factor Research</h1></div>
+      <div class="status-cluster">
+        <span class="status-pill" id="model-status">Model · not configured</span>
+        <span class="status-pill" id="rag-status">RAG · 0 chunks</span>
+        <span class="avatar" title="Quantary local workspace">Q</span>
+      </div>
+    </header>
+
+    <section class="page active" id="page-learn">
+      <div class="hero compact">
+        <div><p class="eyebrow accent">GUIDED LAB</p><h2>从直觉到可证伪的因子</h2><p>同一套 Quant Engine，先把 IC、分层收益与回撤看懂，再进入真实研究。</p></div>
+        <button class="primary" id="run-lesson">运行真实计算实验</button>
+      </div>
+      <div class="learning-path">
+        <article><em>01</em><h3>Factor</h3><p>把某种可计算特征变成每期、每只股票的分数。</p></article>
+        <article><em>02</em><h3>IC / RankIC</h3><p>检验因子排序与下一期收益排序是否同向。</p></article>
+        <article><em>03</em><h3>Quantiles</h3><p>检查高分组是否稳定优于低分组，而非只看均值。</p></article>
+        <article><em>04</em><h3>Portfolio</h3><p>加入换手、成本、Sharpe 与最大回撤。</p></article>
+        <article><em>05</em><h3>Multi-Factor</h3><p>先查相关性和冗余，再做简单可解释组合。</p></article>
+      </div>
+      <div class="grid two">
+        <article class="panel"><div class="panel-head"><h3>Momentum lesson</h3><span class="tag">No look-ahead</span></div><div id="lesson-output" class="empty">点击“运行真实计算实验”，结果来自 Quant Engine，不是 LLM 编写的数字。</div></article>
+        <article class="panel"><div class="panel-head"><h3>Research discipline</h3><span class="tag neutral">Scientific</span></div>
+          <ol class="rules"><li>先写经济逻辑和证伪条件</li><li>所有形成信息至少滞后一期</li><li>开发、验证、滚动测试、锁定留出集严格分开</li><li>失败允许有限修改，不自动疯狂调参</li></ol>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="page-research">
+      <div class="grid research-layout">
+        <article class="panel form-panel">
+          <div class="panel-head"><div><p class="eyebrow accent">ONE-CLICK FLOW</p><h2>Create Research</h2></div><span class="tag" id="research-mode-tag">Mock safe</span></div>
+          <form id="research-form">
+            <label class="full">你想研究什么<textarea name="objective" rows="4" required>我想研究美股科技股中，成交量和短期动量结合是否可以预测未来 5 日收益。</textarea></label>
+            <div class="form-grid">
+              <label>市场<select name="market"><option value="US">美股 US</option><option value="CN">A股 CN</option><option value="HK">港股 HK</option></select></label>
+              <label>股票池<input name="universe" placeholder="AAPL,MSFT,NVDA（可空）"></label>
+              <label>时间频率<select name="frequency"><option value="daily">日频</option><option value="weekly">周频</option><option value="monthly">月频</option></select></label>
+              <label>持有周期<input name="holding_period" type="number" value="5" min="1" max="252"></label>
+              <label>开始日期<input name="start_date" type="date" value="2010-01-01"></label>
+              <label>结束日期<input name="end_date" type="date" value="2012-12-31"></label>
+              <label>因子类型<select name="factor_type"><option>auto</option><option>momentum</option><option>volume</option><option>volatility</option><option>value</option><option>quality</option></select></label>
+              <label>数据<select name="data_provider"><option value="synthetic">Synthetic · 演示</option><option value="local_csmar_csv">Local CSMAR · 真实</option></select></label>
+            </div>
+            <div class="switch-row"><label class="switch-label"><input type="checkbox" name="use_local_reports" checked><span></span>参考本地研报</label><label class="switch-label"><input type="checkbox" name="live"><span></span>使用真实 AI</label></div>
+            <button class="primary wide" type="submit">开始一键研究 <b>→</b></button>
+          </form>
+        </article>
+        <article class="panel flow-panel">
+          <div class="panel-head"><h3>Research process</h3><span id="run-status" class="tag neutral">Ready</span></div>
+          <div class="pipeline" id="pipeline">
+            <div data-stage="retrieve"><b>01</b><span>Evidence</span><small>RAG 检索</small></div>
+            <div data-stage="research"><b>02</b><span>Hypothesis</span><small>可证伪假设</small></div>
+            <div data-stage="develop"><b>03</b><span>Factor Code</span><small>Pydantic 输出</small></div>
+            <div data-stage="validate"><b>04</b><span>Safety</span><small>AST 检查</small></div>
+            <div data-stage="evaluate"><b>05</b><span>Validation</span><small>IC / 分层</small></div>
+            <div data-stage="feedback"><b>06</b><span>Conclusion</span><small>有限迭代</small></div>
+          </div>
+          <div id="research-output" class="empty large">提交研究问题后，这里会显示检索来源、假设、代码、安全检查、样本外结果和结论。</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="page-runs"><div class="section-head"><div><p class="eyebrow accent">AUDIT TRAIL</p><h2>Research Runs</h2></div><button class="secondary" id="refresh-runs">刷新</button></div><article class="panel table-wrap"><table><thead><tr><th>Run</th><th>Objective</th><th>Status</th><th>Iteration</th><th>Updated</th><th></th></tr></thead><tbody id="runs-body"></tbody></table></article><article class="panel hidden" id="run-detail"></article></section>
+
+    <section class="page" id="page-factors"><div class="section-head"><div><p class="eyebrow accent">REUSABLE SIGNALS</p><h2>Factor Library</h2></div><span class="tag neutral">Validated only</span></div><div id="factor-grid" class="card-grid"><div class="empty">完成研究后，将验证过的因子保存到这里。</div></div></section>
+
+    <section class="page" id="page-multi"><div class="grid two"><article class="panel"><div class="panel-head"><div><p class="eyebrow accent">EXPLAINABLE COMBINATION</p><h2>Build Multi-Factor Model</h2></div></div><form id="multi-form"><div id="multi-factor-list" class="check-list"></div><label>组合方法<select name="method"><option value="equal_weight">Equal weight · 推荐</option><option value="ic_weighted">Positive IC weighted</option></select></label><button class="primary wide" type="submit">检查冗余并回测</button></form></article><article class="panel"><h3>Analysis</h3><div id="multi-output" class="empty large">至少选择两个已保存因子。系统只做等权或正 IC 加权，不自动搜索参数。</div></article></div></section>
+
+    <section class="page" id="page-backtest"><div class="hero compact"><div><p class="eyebrow accent">QUANT ENGINE</p><h2>Backtest, not storytelling</h2><p>AI 只负责研究与解释；收益、IC、换手、回撤均由确定性的 Quant Engine 计算。</p></div><span class="architecture">RD Agent → Validated Signal → Risk Rules → Paper Broker</span></div><div class="grid three"><article class="panel"><h3>Data discipline</h3><p>优先 point-in-time 本地数据；没有企业行动时明确警告，不悄悄使用错误价格。</p></article><article class="panel"><h3>Temporal validation</h3><p>Development → Validation → Walk-forward → Locked holdout，避免同一数据反复调参。</p></article><article class="panel"><h3>Costs & capacity</h3><p>V1 记录换手；真实使用需按市场补充佣金、冲击成本、停牌与涨跌停约束。</p></article></div><article class="panel"><h3>Recent evaluated runs</h3><div id="backtest-runs" class="empty">暂无完成的回测。</div></article></section>
+
+    <section class="page" id="page-paper"><div class="section-head"><div><p class="eyebrow accent">EXECUTION SANDBOX</p><h2>Paper Trading</h2></div><span class="tag warning">No live money</span></div><div class="metric-strip" id="paper-account"></div><div class="grid two"><article class="panel"><h3>Paper order</h3><form id="paper-form" class="form-grid"><label>Symbol<input name="symbol" value="AAPL"></label><label>模拟价格<input name="price" type="number" step="0.01" value="200"></label><label>Side<select name="side"><option value="buy">Buy</option><option value="sell">Sell</option></select></label><label>Quantity<input name="quantity" type="number" step="1" value="10"></label><button class="primary wide full" type="submit">通过 Risk Rules 提交</button></form><p class="fineprint">这条路径由规则引擎调用 BrokerAdapter。LLM 没有 place_order 权限。</p></article><article class="panel"><h3>Positions</h3><div id="paper-positions" class="empty">暂无模拟持仓。</div></article></div><article class="panel"><h3>Orders</h3><div id="paper-orders" class="empty">暂无订单。</div></article></section>
+
+    <section class="page" id="page-knowledge"><div class="section-head"><div><p class="eyebrow accent">LOCAL-FIRST</p><h2>Knowledge & Data</h2></div><button class="primary" id="index-rag">增量建立 RAG 索引</button></div><div class="metric-strip" id="data-metrics"></div><div class="grid two"><article class="panel"><div class="panel-head"><h3>Data readiness</h3><span class="tag neutral" id="download-state">Scanning</span></div><div id="data-readiness"></div></article><article class="panel"><h3>Search local research</h3><form id="rag-search-form" class="inline-form"><input name="query" value="成交量 动量 因子" required><button class="secondary" type="submit">检索</button></form><div id="rag-results" class="empty">索引完成后可验证命中内容与引用页码。</div></article></div><article class="panel"><h3>Important boundary</h3><div class="boundary"><span>PDF / MD / TXT</span><b>→ RAG / citations</b><i></i><span>OHLCV / 财务 / 因子表</span><b>→ MarketDataProvider / computation</b></div><div id="missing-data" class="notice"></div></article></section>
+
+    <section class="page" id="page-connections"><div class="grid two"><article class="panel"><div class="panel-head"><div><p class="eyebrow accent">MODEL ACCOUNT</p><h2>LLM connection</h2></div><span class="tag neutral">Memory only</span></div><form id="model-form"><label>Provider<select name="provider"><option value="openai">OpenAI</option><option value="openai_compatible">OpenAI-compatible</option></select></label><label>Base URL<input name="base_url" value="https://api.openai.com/v1"></label><label>Model<input name="model" placeholder="例如 gpt-4.1-mini" required></label><label>API key<input name="api_key" type="password" autocomplete="off" required></label><button class="primary wide" type="submit">Apply & test connection</button></form><div id="model-result" class="notice">Key 只保存在当前服务进程内存，不写入浏览器 LocalStorage、SQLite 或日志。</div></article><article class="panel"><h3>Channel architecture</h3><div class="connection-list"><div><b>LLM</b><span id="connection-llm">Not configured</span></div><div><b>Research KB</b><span>Local SQLite FTS5</span></div><div><b>Market data</b><span>MarketDataProvider</span></div><div><b>Execution</b><span>PaperBrokerAdapter</span></div><div><b>Live broker</b><span>Plugin boundary · disabled</span></div></div></article></div></section>
+  </main>
+  <div id="toast" class="toast"></div>
+  <script src="/assets/app.js?v=0.3.0" defer></script>
+</body>
+</html>

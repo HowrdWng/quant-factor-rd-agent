@@ -1,0 +1,33 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+*.whl
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+.local_legacy/
+
+# Generated runtime data
+artifacts/*
+data/*
+workspace/*
+!artifacts/.gitkeep
+!data/.gitkeep
+!workspace/.gitkeep
+
+# Machine-specific audits and private data-source exporters
+docs/DATA_AUDIT.local.md
+scripts/quant_console_export.py
+
+# Reference source snapshots and downloaded archives
+references/*
+!references/README.md

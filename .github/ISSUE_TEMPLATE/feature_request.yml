@@ -1,0 +1,30 @@
+name: Feature request
+description: Propose a focused research-product improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Research problem
+      description: What workflow or scientific limitation should be improved?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+      description: Explain the smallest useful change and how a user would verify it.
+    validations:
+      required: true
+  - type: dropdown
+    id: boundary
+    attributes:
+      label: Primary layer
+      options: [RD Agent, Retrieval, Quant Engine, MarketDataProvider, UI/API, PaperBrokerAdapter, Documentation]
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Leakage, safety, or execution risks
