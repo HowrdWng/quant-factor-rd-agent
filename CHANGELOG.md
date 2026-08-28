@@ -26,6 +26,7 @@ in research preview.
 - Successful Responses API payloads containing `"error": null` are no longer treated as failures.
 - Browser model setup no longer dereferences an expired DOM event target after an asynchronous request.
 - Versioned frontend assets prevent stale JavaScript from surviving product updates.
+- SciPy is declared explicitly for clean-environment rank-correlation evaluation.
 
 ## [0.2.0] - 2026-08-26
 

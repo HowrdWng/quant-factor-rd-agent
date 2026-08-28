@@ -29,6 +29,7 @@ dependencies = [
   "pandas>=2.2",
   "pydantic>=2.8,<3",
   "pypdf>=5.0,<7",
+  "scipy>=1.12,<2",
   "typing-extensions>=4.12",
   "uvicorn[standard]>=0.35,<1",
 ]
