@@ -1,4 +1,4 @@
-FROM python:3.13-slim
+FROM python:3.14-slim
 
 LABEL org.opencontainers.image.title="Quantary" \
       org.opencontainers.image.description="Evidence-grounded AI quantitative factor research workspace" \
